@@ -1,5 +1,4 @@
 const std = @import("std");
-const pkgs = @import("deps.zig").pkgs;
 
 inline fn getThisDir() []const u8 {
     return comptime std.fs.path.dirname(@src().file) orelse ".";
@@ -33,6 +32,7 @@ pub fn build(b: *std.build.Builder) void {
     // exe.linkSystemLibrary("c");
 
     exe.addPackage(.{ .name = "zigcv", .source = .{ .path = "libs/zigcv/src/main.zig" } });
+    // @import("libs/zigcv/build.zig").build(b);
 
     exe.install();
 
