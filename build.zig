@@ -1,5 +1,5 @@
 const std = @import("std");
-const zigcv = @import("libs/zigcv/libs.zig");
+const zigcv = @import("lib/zigcv/libs.zig");
 
 inline fn getThisDir() []const u8 {
     return comptime std.fs.path.dirname(@src().file) orelse ".";
@@ -27,6 +27,10 @@ pub fn build(b: *std.build.Builder) void {
 
     zigcv.link(exe);
     zigcv.addAsPackage(exe);
+
+    const nats = @import("lib/nats.zig/build.zig");
+    exe.addPackage(nats.pkgs.libressl);
+    exe.addPackage(nats.pkgs.nats);
 
     exe.install();
 

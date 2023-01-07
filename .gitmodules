@@ -1,6 +1,9 @@
-[submodule "libs/zigcv"]
-	path = libs/zigcv
-	url = https://github.com/ryoppippi/zigcv
-[submodule "libs/nats.zig"]
-	path = libs/nats.zig
+[submodule "lib/nats.zig"]
+	path = lib/nats.zig
 	url = https://github.com/ianic/nats.zig.git
+[submodule "lib/zigcv"]
+	path = lib/zigcv
+	url = https://github.com/ryoppippi/zigcv
+[submodule "lib/zig-libressl"]
+	path = lib/zig-libressl
+	url = https://github.com/haze/zig-libressl.git
