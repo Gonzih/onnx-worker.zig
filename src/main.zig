@@ -26,7 +26,9 @@ pub fn main() !void {
     logStatus(sessStatus);
     std.debug.print("sess {*}\n", .{session});
 
-    try cv.readImage("assets/dog.png");
+    const allocator = std.heap.page_allocator;
+    const im = try cv.readImage(allocator, "assets/dog.png", 224, 224);
+    std.debug.print("IM {any}\n", .{im});
 }
 
 test "simple test" {
