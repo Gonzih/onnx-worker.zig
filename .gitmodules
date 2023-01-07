@@ -1,0 +1,3 @@
+[submodule "libs/zigcv"]
+	path = libs/zigcv
+	url = https://github.com/ryoppippi/zigcv
