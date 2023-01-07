@@ -1,4 +1,5 @@
 const std = @import("std");
+const zigcv = @import("libs/zigcv/libs.zig");
 
 inline fn getThisDir() []const u8 {
     return comptime std.fs.path.dirname(@src().file) orelse ".";
@@ -26,20 +27,11 @@ pub fn build(b: *std.build.Builder) void {
     // exe.addLibraryPath("/opt/homebrew/Cellar/onnxruntime/1.13.1/lib");
     exe.linkSystemLibrary("libonnxruntime");
     exe.linkSystemLibrary("opencv4");
-    // exe.linkSystemLibrary("stdc++.dll");
-    // exe.linkSystemLibrary("unwind");
-    // exe.linkSystemLibrary("m");
-    // exe.linkSystemLibrary("c");
 
-    exe.addPackage(.{ .name = "zigcv", .source = .{ .path = "libs/zigcv/src/main.zig" } });
-    // @import("libs/zigcv/build.zig").build(b);
+    zigcv.link(exe);
+    zigcv.addAsPackage(exe);
 
     exe.install();
-
-    // std.debug.print("DIRS: \n", .{});
-    // for (exe.include_dirs.items) |path| {
-    //     std.debug.print("{s}\n", .{path.raw_path});
-    // }
 
     const run_cmd = exe.run();
     run_cmd.step.dependOn(b.getInstallStep());
