@@ -20,11 +20,8 @@ pub fn build(b: *std.build.Builder) void {
 
     exe.setTarget(target);
     exe.setBuildMode(mode);
-    // exe.addIncludePath("/opt/homebrew/Cellar/onnxruntime/1.13.1/include");
     exe.addIncludePath("/opt/homebrew/include");
-    exe.addIncludePath("libs/zigcv/libs/gocv");
 
-    // exe.addLibraryPath("/opt/homebrew/Cellar/onnxruntime/1.13.1/lib");
     exe.linkSystemLibrary("libonnxruntime");
     exe.linkSystemLibrary("opencv4");
 
